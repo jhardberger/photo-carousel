@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.modal-header {
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.modal-button {
+  display: flex;
+  justify-content: center;
+}
+
 .all-photos {
   border: 1px dotted green;
   display: flex;

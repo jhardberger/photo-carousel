@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
-import Display from './Display';
+import WelcomeModal from './WelcomeModal';
+import Display      from './Display';
 
 const db = Firebase.firestore();
 
@@ -10,39 +11,23 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      url: '',
-      title: '',
+      showModal: true,
       photos: []
     };
+    this.renderPhotos    = this.renderPhotos.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
   }
 
-  updateInput = (e) => {
-    console.log(e.target.value);
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  handleShowModal(){
+    this.setState({ showModal: !this.state.showModal });
+  }
 
-  addPhoto = (e) => {
-    e.preventDefault();
-    db.collection('photos').add({
-      url: this.state.url,
-      title: this.state.title
-    });
-
-    this.setState({
-      url: '',
-      title: ''
-    });
-  }; 
-
-  componentDidMount(){
-
+  renderPhotos(){
     let newState = []
 
     db.collection('photos').get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
         newState.push(doc.data());
       });
     });
@@ -50,35 +35,26 @@ class App extends Component {
     this.setState({
       photos: newState
     })
+  }
+
+  componentDidMount(){
+    this.renderPhotos();
   };
 
   render() {
+
     return (
       <div className="App">
-        <Display photos={this.state.photos} />
-        <div className='input'>
-          <h1>new photos here, baby</h1>
 
-          <div className='form'>
-            <form onSubmit={this.addPhoto}> 
-              <input 
-                type='text' 
-                name='url' 
-                placeholder='Photo URL'
-                onChange={this.updateInput} 
-                value={this.state.url}
-              />
-              <input 
-                type='text' 
-                name='title' 
-                placeholder='Photo title' 
-                onChange={this.updateInput}
-                value={this.state.title} 
-              />
-              <button type='submit'>Submit</button>
-            </form>
-          </div>  
-        </div>
+        <WelcomeModal 
+          showModal={this.state.showModal} 
+          handleShowModal={this.handleShowModal}
+        />
+        
+        <Display 
+          photos={this.state.photos} 
+        />
+        
       </div>    
     );
   }

@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
+const db = Firebase.firestore();
+
+
 class App extends Component {
   constructor(){
     super();
     this.state = {
       url: '',
-      title: ''
+      title: '',
+      photos: []
     };
   }
 
@@ -20,8 +24,7 @@ class App extends Component {
 
   addPhoto = (e) => {
     e.preventDefault();
-    const db = Firebase.firestore();
-    const photoRef = db.collection('photos').add({
+    db.collection('photos').add({
       url: this.state.url,
       title: this.state.title
     });
@@ -31,6 +34,14 @@ class App extends Component {
       title: ''
     });
   }; 
+
+  componentDidMount(){
+    db.collection('photos').get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
+  };
 
   render() {
     return (

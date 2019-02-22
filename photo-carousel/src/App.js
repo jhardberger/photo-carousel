@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
-const db = Firebase.firestore();
+import Display from './Display';
 
+const db = Firebase.firestore();
 
 class App extends Component {
   constructor(){
@@ -54,28 +55,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello world!</h1>
+        <Display photos={this.state.photos} />
+        <div className='input'>
+          <h1>new photos here, baby</h1>
 
-        <div className='form'>
-          <form onSubmit={this.addPhoto}> 
-            <input 
-              type='text' 
-              name='url' 
-              placeholder='Photo URL'
-              onChange={this.updateInput} 
-              value={this.state.url}
-            />
-            <input 
-              type='text' 
-              name='title' 
-              placeholder='Photo title' 
-              onChange={this.updateInput}
-              value={this.state.title} 
-            />
-            <button type='submit'>Submit</button>
-          </form>
-        </div>      
-      </div>
+          <div className='form'>
+            <form onSubmit={this.addPhoto}> 
+              <input 
+                type='text' 
+                name='url' 
+                placeholder='Photo URL'
+                onChange={this.updateInput} 
+                value={this.state.url}
+              />
+              <input 
+                type='text' 
+                name='title' 
+                placeholder='Photo title' 
+                onChange={this.updateInput}
+                value={this.state.title} 
+              />
+              <button type='submit'>Submit</button>
+            </form>
+          </div>  
+        </div>
+      </div>    
     );
   }
 }

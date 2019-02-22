@@ -36,11 +36,19 @@ class App extends Component {
   }; 
 
   componentDidMount(){
+
+    let newState = []
+
     db.collection('photos').get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         console.log(doc.id, " => ", doc.data());
+        newState.push(doc.data());
       });
     });
+    console.log(newState);
+    this.setState({
+      photos: newState
+    })
   };
 
   render() {

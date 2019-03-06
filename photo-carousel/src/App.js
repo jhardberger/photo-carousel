@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
-
 import WelcomeModal from './WelcomeModal';
 import PhotoModal   from './PhotoModal';
 import Display      from './Display';
@@ -14,6 +13,7 @@ class App extends Component {
     super();
     this.state = {
       showModal: true,
+      showPhoto: false,
       photos: [],
       currentDisplay: null,
     };
@@ -32,11 +32,17 @@ class App extends Component {
 
     const clickedPhoto = this.state.photos.filter(photo => photo.url === photoURL);
     console.log(clickedPhoto[0]);
-    this.setState({currentDisplay: clickedPhoto[0]});
+    this.setState({
+      currentDisplay: clickedPhoto[0],
+      showPhoto: true
+    });
   }
 
   hidePhoto(){
-
+    this.setState({
+      currentDisplay: null,
+      showPhoto: false
+    })
   }
 
 
@@ -70,10 +76,15 @@ class App extends Component {
         />
 
         <PhotoModal
+          currentDisplay={this.state.currentDisplay}
+          showPhoto={this.state.showPhoto}
+
+          hidePhoto={this.hidePhoto}
         />
         
         <Display 
           photos={this.state.photos}
+          
           displayPhoto={this.displayPhoto}
           hidePhoto={this.hidePhoto} 
         />

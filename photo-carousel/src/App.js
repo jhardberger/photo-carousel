@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
+
 import WelcomeModal from './WelcomeModal';
+import PhotoModal   from './PhotoModal';
 import Display      from './Display';
 
 const db = Firebase.firestore();
@@ -26,14 +28,10 @@ class App extends Component {
   }
 
   displayPhoto(e){
-    e.persist();
-    console.log('e: ', e);
-
-    console.log('url: ', e.target.src);
     const photoURL = e.target.src; 
 
     const clickedPhoto = this.state.photos.filter(photo => photo.url === photoURL);
-    console.log(clickedPhoto);
+    console.log(clickedPhoto[0]);
     this.setState({currentDisplay: clickedPhoto[0]});
   }
 
@@ -69,6 +67,9 @@ class App extends Component {
         <WelcomeModal 
           showModal={this.state.showModal} 
           handleShowModal={this.handleShowModal}
+        />
+
+        <PhotoModal
         />
         
         <Display 

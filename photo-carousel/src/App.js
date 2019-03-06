@@ -12,15 +12,35 @@ class App extends Component {
     super();
     this.state = {
       showModal: true,
-      photos: []
+      photos: [],
+      currentDisplay: null,
     };
     this.renderPhotos    = this.renderPhotos.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
+    this.displayPhoto    = this.displayPhoto.bind(this);
+    this.hidePhoto       = this.hidePhoto.bind(this);
   }
 
   handleShowModal(){
     this.setState({ showModal: !this.state.showModal });
   }
+
+  displayPhoto(e){
+    e.persist();
+    console.log('e: ', e);
+
+    console.log('url: ', e.target.src);
+    const photoURL = e.target.src; 
+
+    const clickedPhoto = this.state.photos.filter(photo => photo.url === photoURL);
+    console.log(clickedPhoto);
+    this.setState({currentDisplay: clickedPhoto[0]});
+  }
+
+  hidePhoto(){
+
+  }
+
 
   renderPhotos(){
     let newState = []
@@ -52,7 +72,9 @@ class App extends Component {
         />
         
         <Display 
-          photos={this.state.photos} 
+          photos={this.state.photos}
+          displayPhoto={this.displayPhoto}
+          hidePhoto={this.hidePhoto} 
         />
         
       </div>    

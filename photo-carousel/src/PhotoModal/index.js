@@ -9,13 +9,17 @@ const PhotoModal = (props) => {
 		});
 
 		return(
-			<div className='display-modal'>
+			<div className='photo-modal'>
 				<Modal basic open={props.showPhoto}>
-					<div className='display-inner'>
+					<div className='photo-inner'>
 						<Image src={props.currentDisplay.url} onClick={props.hidePhoto} />
-						<div className='tags'>
-							<h1>{props.currentDisplay.location}</h1>
-							{photoTags}
+						<div className='photo-info'>
+							<h1 className='location'>
+								{props.currentDisplay.location}
+							</h1>
+							<div className='tags'>
+								{photoTags}
+							</div>
 						</div>
 					</div>
 				</Modal>

@@ -17,10 +17,11 @@ class App extends Component {
       photos: [],
       currentDisplay: null,
     };
-    this.renderPhotos    = this.renderPhotos.bind(this);
-    this.handleShowModal = this.handleShowModal.bind(this);
-    this.displayPhoto    = this.displayPhoto.bind(this);
-    this.hidePhoto       = this.hidePhoto.bind(this);
+    this.renderPhotos       = this.renderPhotos.bind(this);
+    this.handleShowModal    = this.handleShowModal.bind(this);
+    this.displayPhoto       = this.displayPhoto.bind(this);
+    this.hidePhoto          = this.hidePhoto.bind(this);
+    this.displayPhotoTraits = this.displayPhotoTraits.bind(this);
   }
 
   handleShowModal(){
@@ -38,13 +39,24 @@ class App extends Component {
     });
   }
 
+  displayPhotoTraits(){
+    this.setState({
+      currentDisplay: {
+        display: true,
+        location: this.state.currentDisplay.location,
+        tags: this.state.currentDisplay.tags,
+        url: this.state.currentDisplay.url
+      }
+    });
+    console.log('success?');
+  }
+
   hidePhoto(){
     this.setState({
       currentDisplay: null,
       showPhoto: false
     })
   }
-
 
   renderPhotos(){
     let newState = []
@@ -79,6 +91,7 @@ class App extends Component {
           currentDisplay={this.state.currentDisplay}
           showPhoto={this.state.showPhoto}
 
+          displayPhotoTraits={this.displayPhotoTraits}
           hidePhoto={this.hidePhoto}
         />
         

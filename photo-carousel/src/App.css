@@ -13,10 +13,30 @@
   justify-content: center;
 }
 
-.photo-inner {
+.modal-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-frame {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+}
+
+.photo-display {
+  position: relative;
+  z-index: -1;
+}
+
+.hover {
+  border: 1px dotted red;
+
+  position: absolute;
+  z-index: 0;
+
+  height: 100%;
+  width: 400px;
+  margin-left: 245px;
 }
 
 .photo-info {

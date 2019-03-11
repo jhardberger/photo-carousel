@@ -17,6 +17,7 @@ const PhotoModal = (props) => {
 						<div 
 							className='hover'
 							onMouseOver={props.displayPhotoTraits}
+							onMouseLeave={props.hidePhotoTraits}
 						></div>
 						<div className='photo-frame'>
 							<img 

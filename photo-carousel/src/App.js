@@ -22,7 +22,27 @@ class App extends Component {
     this.displayPhoto       = this.displayPhoto.bind(this);
     this.hidePhoto          = this.hidePhoto.bind(this);
     this.displayPhotoTraits = this.displayPhotoTraits.bind(this);
+    this.hidePhotoTraits    = this.hidePhotoTraits.bind(this);
   }
+
+  renderPhotos(){
+    let newState = []
+
+    db.collection('photos').get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        // console.log(doc.id, " => ", doc.data());
+        newState.push(doc.data());
+      });
+    });
+    console.log(newState);
+    this.setState({
+      photos: newState
+    })
+  }
+
+  componentDidMount(){
+    this.renderPhotos();
+  };
 
   handleShowModal(){
     this.setState({ showModal: !this.state.showModal });
@@ -48,7 +68,17 @@ class App extends Component {
         url: this.state.currentDisplay.url
       }
     });
-    console.log('success?');
+  }
+
+  hidePhotoTraits(){
+     this.setState({
+      currentDisplay: {
+        display: false,
+        location: this.state.currentDisplay.location,
+        tags: this.state.currentDisplay.tags,
+        url: this.state.currentDisplay.url
+      }
+    });
   }
 
   hidePhoto(){
@@ -57,25 +87,6 @@ class App extends Component {
       showPhoto: false
     })
   }
-
-  renderPhotos(){
-    let newState = []
-
-    db.collection('photos').get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        // console.log(doc.id, " => ", doc.data());
-        newState.push(doc.data());
-      });
-    });
-    console.log(newState);
-    this.setState({
-      photos: newState
-    })
-  }
-
-  componentDidMount(){
-    this.renderPhotos();
-  };
 
   render() {
 
@@ -92,6 +103,7 @@ class App extends Component {
           showPhoto={this.state.showPhoto}
 
           displayPhotoTraits={this.displayPhotoTraits}
+          hidePhotoTraits={this.hidePhotoTraits}
           hidePhoto={this.hidePhoto}
         />
         

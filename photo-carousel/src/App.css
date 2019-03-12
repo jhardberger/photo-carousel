@@ -16,11 +16,7 @@
 .modal-inner {
   display: flex;
   justify-content: center;
-}
-
-.photo-frame {
-  display: flex;
-  flex-direction: row;
+  align-items: flex-end;
 }
 
 .photo-display {
@@ -30,21 +26,25 @@
 
 .hover {
   border: 1px dotted red;
-
   position: absolute;
+  right: 0;
   z-index: 0;
-
   height: 100%;
-  width: 400px;
-  margin-left: 245px;
+  width: 200px;
 }
 
 .photo-info {
-  border: 1px dotted white;
+  background: rgba(0,0,0,.75); 
+  position: relative;
+  left: 0;
 
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 200px;
   padding: 5px;
 }
 
@@ -57,12 +57,14 @@
 
 .tags {
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  flex-flow: row-wrap;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .tags > .label {
-  margin: 5px;
+  margin-bottom: 2px;
+  padding: 5px;
 }
 
 .display {

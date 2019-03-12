@@ -21,15 +21,17 @@ const PhotoModal = (props) => {
 							>
 								<Fade clear when={props.currentDisplay.display} >
 									<div className='photo-info'>
-										<h1 className='location'>
-											{props.currentDisplay.location}
-										</h1>
 										<Fade right cascade>
+											<h1 className='location'>
+												{props.currentDisplay.location}
+											</h1>
+											<h2 className='click-to-exit'>
+												(click photo to exit)
+											</h2>
 											<div className='tags'>
 												{photoTags}
 											</div>
 										</Fade>
-										(click photo to exit)
 									</div>
 								</Fade>
 							</div>

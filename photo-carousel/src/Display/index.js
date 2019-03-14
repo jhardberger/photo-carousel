@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Title from '../Title';
+
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 
 const Display = (props) => {
@@ -33,8 +35,7 @@ const Display = (props) => {
 
 	return(
 		<div className='display'>
-			<h1>Display here, baby</h1>
-	
+            <Title /> 	
 			<ParallaxProvider>
 				<div className='all-photos'>
 						{allPhotos}

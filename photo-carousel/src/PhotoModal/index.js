@@ -26,7 +26,7 @@ const PhotoModal = (props) => {
 												{props.currentDisplay.location}
 											</h1>
 											<h2 className='click-to-exit'>
-												(click photo to exit)
+												(click to exit)
 											</h2>
 											<div className='tags'>
 												{photoTags}

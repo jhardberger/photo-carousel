@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon } 					from 'semantic-ui-react';
 
-const Title = (props) => {
+const Title = () => {
 	return(
 		<div className='copy'>
 			<h1 className='title'>the carousel</h1>

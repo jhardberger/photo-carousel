@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Icon } 	from 'semantic-ui-react';
-
 const Title = (props) => {
 	return(
 		<div className='title-copy'>

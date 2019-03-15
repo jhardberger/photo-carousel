@@ -4,6 +4,8 @@ import Nav from '../Nav';
 
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { StickyContainer, Sticky }    from 'react-sticky';
+import { Fade }                       from 'react-reveal';
+
 
 import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
 configureAnchors({offset: 226, scrollDuration: 500});
@@ -49,10 +51,13 @@ const Display = (props) => {
                 <div className='display'>                   
         			<ParallaxProvider>
                         <ScrollableAnchor id={'photos'}>
-            				<div className='all-photos'>
-                                {allPhotos}
-            				</div>
+                            <div />
                         </ScrollableAnchor>
+                            <Fade clear cascade>
+            				    <div className='all-photos'>
+                                    {allPhotos}
+                                </div>
+                            </Fade>
         				<div className='spacer'>
         				</div>
         			</ParallaxProvider>

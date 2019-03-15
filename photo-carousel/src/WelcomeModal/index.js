@@ -1,23 +1,19 @@
 import React from 'react';
-import { Button, Header, Modal } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 
 const WelcomeModal = (props) => {
 	return(
 		<div className='welcome'>
 			<Modal basic open={props.showModal}>
-				<Modal.Header>
-					<h1 className='modal-header'>Welcome!</h1>
-				</Modal.Header>
-				<Modal.Actions className='modal-button'>
-					<Button 
-						basic 
-						color='black' 
-						inverted 
-						onClick={props.handleShowModal}
-					>
-						Enter
-					</Button>
-				</Modal.Actions>	
+				<Modal.Content>
+					<div className='title-copy'>
+						<h1 className='title'>the carousel</h1>
+						<h2>film and digital photography by <a href='johnhardberger.com'>john hardberger</a></h2>
+						<div className='enter-button' onClick={props.handleShowModal}>
+							<a href='#photos'><h2 className='enter'>enter</h2></a>
+						</div>
+					</div>			
+				</Modal.Content>	
 			</Modal>
 		</div>
 	)

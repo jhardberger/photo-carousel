@@ -6,7 +6,7 @@ class Nav extends Component {
 
 		return(
 			<div className='nav' style={style} >
-				<a className='nav-copy' id='top'>top</a>
+				<a className='nav-copy' id='top' href='#photos'>top</a>
 				<a className='nav-copy' id='sort'>sort</a>
 			</div>
 		)

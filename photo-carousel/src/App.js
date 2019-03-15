@@ -13,38 +13,17 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      showNav: false,
       showModal: true,
       showPhoto: false,
       photos: [],
       currentDisplay: null,
     };
-    this.renderPhotos       = this.renderPhotos.bind(this);
     this.handleShowModal    = this.handleShowModal.bind(this);
     this.displayPhoto       = this.displayPhoto.bind(this);
     this.hidePhoto          = this.hidePhoto.bind(this);
     this.displayPhotoTraits = this.displayPhotoTraits.bind(this);
     this.hidePhotoTraits    = this.hidePhotoTraits.bind(this);
   }
-
-  renderPhotos(){
-    let newState = []
-
-    db.collection('photos').get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        // console.log(doc.id, " => ", doc.data());
-        newState.push(doc.data());
-      });
-    });
-    console.log(newState);
-    this.setState({
-      photos: newState
-    })
-  }
-
-  componentDidMount(){
-    this.renderPhotos();
-  };
 
   handleShowModal(){
     this.setState({ showModal: !this.state.showModal });
@@ -90,6 +69,21 @@ class App extends Component {
     })
   }
 
+  componentDidMount(){
+    let newState = []
+
+    db.collection('photos').get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        // console.log(doc.id, " => ", doc.data());
+        newState.push(doc.data());
+      });
+    });
+    console.log(newState);
+    this.setState({
+      photos: newState
+    })
+  };
+
   render() {
 
     return (
@@ -112,7 +106,7 @@ class App extends Component {
         <Display 
           showNav={this.state.showNav}
           photos={this.state.photos}
-          
+  
           displayPhoto={this.displayPhoto}
           hidePhoto={this.hidePhoto} 
         />

@@ -5,6 +5,9 @@ import Nav from '../Nav';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { StickyContainer, Sticky }    from 'react-sticky';
 
+import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
+configureAnchors({offset: 226, scrollDuration: 500});
+
 
 const Display = (props) => {
 
@@ -40,17 +43,16 @@ const Display = (props) => {
             <StickyContainer>
                 <Sticky>
                     {({style}) => (
-                        <Nav 
-                            style={style} 
-                            showNav={props.showNav}
-                        />
+                        <Nav style={style} />
                     )}
                 </Sticky>
                 <div className='display'>                   
         			<ParallaxProvider>
-        				<div className='all-photos'>
-        						{allPhotos}
-        				</div>
+                        <ScrollableAnchor id={'photos'}>
+            				<div className='all-photos'>
+                                {allPhotos}
+            				</div>
+                        </ScrollableAnchor>
         				<div className='spacer'>
         				</div>
         			</ParallaxProvider>

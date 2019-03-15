@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   handleShowModal(){
-    this.setState({ showModal: !this.state.showModal });
+    this.setState({ showModal: false});
   }
 
   displayPhoto(e){

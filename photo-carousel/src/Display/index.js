@@ -27,7 +27,7 @@ const Display = (props) => {
 
         return (
             <Parallax key={i} {...properties}>
-            	<div className='photo-wrap'>
+                <div className='photo-wrap'>
                 	<img 
                 		id={'photo-' + i}
                 		alt={photo.name} 
@@ -53,11 +53,9 @@ const Display = (props) => {
                         <ScrollableAnchor id={'photos'}>
                             <div />
                         </ScrollableAnchor>
-                            <Fade clear cascade>
-            				    <div className='all-photos'>
-                                    {allPhotos}
-                                </div>
-                            </Fade>
+    				    <div className='all-photos'>
+                            {allPhotos}
+                        </div>
         				<div className='spacer'>
         				</div>
         			</ParallaxProvider>

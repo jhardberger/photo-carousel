@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Nav from '../Nav';
-import Title from '../Title';
 
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { StickyContainer, Sticky }    from 'react-sticky';
@@ -37,16 +36,17 @@ const Display = (props) => {
     })
 
 	return(
-		<div className='body'>
+		<div className='display-with-nav'>
             <StickyContainer>
                 <Sticky>
                     {({style}) => (
-                        <Nav style={style} />
+                        <Nav 
+                            style={style} 
+                            showNav={props.showNav}
+                        />
                     )}
                 </Sticky>
-                <div className='display'>
-                    <Title />   
-                   
+                <div className='display'>                   
         			<ParallaxProvider>
         				<div className='all-photos'>
         						{allPhotos}

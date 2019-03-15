@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Firebase from './Firebase';
 import './App.css';
 
+import Title        from './Title';
 import WelcomeModal from './WelcomeModal';
 import PhotoModal   from './PhotoModal';
 import Display      from './Display';
@@ -12,6 +13,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+      showNav: false,
       showModal: true,
       showPhoto: false,
       photos: [],
@@ -106,8 +108,9 @@ class App extends Component {
           hidePhotoTraits={this.hidePhotoTraits}
           hidePhoto={this.hidePhoto}
         />
-        
+        <Title />
         <Display 
+          showNav={this.state.showNav}
           photos={this.state.photos}
           
           displayPhoto={this.displayPhoto}
